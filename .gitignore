@@ -1,0 +1,68 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+db.sqlite3
+*.sqlite3
+*.db
+*.bak
+*.swp
+
+# Environment variables
+.env
+.env.*
+
+# VS Code
+.vscode/
+
+# JetBrains IDEs (PyCharm, IntelliJ)
+.idea/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# pytest
+.pytest_cache/
+
+# Coverage reports
+htmlcov/
+.coverage
+.tox/
+
+# Migrations (optional, sometimes tracked, but ignore if auto-generated frequently)
+*/migrations/__pycache__/
+*/migrations/*.pyc
+# Uncomment to ignore all migration files (use only if you recreate them often)
+# */migrations/*.py
+
+# Docker
+*.pid
+*.seed
+docker-compose.override.yml
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# Build artifacts
+build/
+dist/
+*.egg-info/

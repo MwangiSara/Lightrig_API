@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  db:
+  # PostgreSQL 13 Docker image.
+    image: postgres:13
+    # Persists your PostgreSQL data outside the container (so data isn’t lost when container stops). /var/lib/postgresql/data/ is the path inside the container where PostgreSQL stores its data.
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      # Loads DB credentials from your .env file.
+    env_file:
+      - ./.env
+    environment:
+      - POSTGRES_PASSWORD=${MAIN_DB_USER_PASSWORD}
+      - POSTGRES_USER=${MAIN_DB_USER}
+      - POSTGRES_DB=${MAIN_DB}
+    ports:
+      - "5432:5432"
+
+web:
+# Build the Docker image using your local Dockerfile
+  build: .
+  # Uses Gunicorn, a production-ready server, to run Django’s WSGI app.
+  command: gunicorn lightrig_api.wsgi:application --bind 0.0.0.0:8000
+  # Mounts:Your project code to /app and Static and media directories for serving via Nginx
+  volumes:
+    - .:/app
+    - static_volume:/app/staticfiles
+    - media_volume:/app/media
+  env_file:
+    - ./.env
+    # Expose Django (Gunicorn) on port 8000.
+  ports:
+    - "8000:8000"
+    # Tells Docker to start the db service before starting Django.
+  depends_on:
+    - db
+
+nginx:
+# Nginx v1.21 image.
+    image: nginx:1.21
+    # Map container's port 80 to your machine’s port 80 (standard HTTP)
+    ports:
+      - "80:80"
+      # Mounts: custom Nginx config (./nginx/conf.d) and Static & media volumes to serve files
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - static_volume:/home/app/staticfiles
+      - media_volume:/home/app/media
+    depends_on:
+      - web
+# named volumes so Docker can persist data between container restarts:
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:

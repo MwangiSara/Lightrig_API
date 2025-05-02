@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>New Booking Notification</title>
+  </head>
+  <body
+    style="
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f9f9;
+      padding: 20px;
+      color: #333;
+    "
+  >
+    <div
+      style="
+        max-width: 600px;
+        margin: auto;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        padding: 20px;
+        border-radius: 8px;
+      "
+    >
+      <p style="font-size: 16px">Dear {{ booking.photographer }},</p>
+
+      <p>
+        You have received a new booking request from
+        <strong>{{ booking.client.name }}</strong>.
+      </p>
+
+      <div style="margin: 20px 0">
+        <p><strong>Event details:</strong></p>
+        <ul style="padding-left: 20px">
+          <li><strong>Type:</strong> {{ booking.services_type }}</li>
+          <li><strong>Date:</strong> {{ booking.event_date }}</li>
+          <li><strong>Time:</strong> {{ booking.event_time }}</li>
+          <li><strong>Location:</strong> {{ booking.Location }}</li>
+          <li>
+            <strong>Photographer:</strong> {{
+            booking.photographer.user.get_full_name }}
+          </li>
+        </ul>
+      </div>
+
+      <p>If you have any questions, please contact us.</p>
+
+      <p style="margin-top: 30px">
+        <span>--</span><br />
+        Best regards,<br />
+        Sarah M,<br />
+        LightRig Admin
+      </p>
+    </div>
+
+    <div
+      style="
+        max-width: 350px;
+        margin: auto;
+        padding-top: 10px;
+        font-size: 12px;
+        color: gray;
+        text-align: center;
+      "
+    >
+      Sent by LightRig •
+      <a
+        href="https://lightrig-8uy4.vercel.app/"
+        style="color: #1a73e8; text-decoration: none"
+        >Website</a
+      >
+      • Nairobi, Kenya
+    </div>
+  </body>
+</html>
