@@ -150,7 +150,6 @@ python-decouple==3.8
 python-dotenv==1.0.1
 python3-openid==3.2.0
 pytz==2021.1
-
 PyYAML==6.0.1
 pyzmq==25.1.2
 redis==5.2.1
@@ -179,9 +178,7 @@ sympy==1.13.1
 tbb==2021.12.0
 tensorboard==2.16.2
 tensorboard-data-server==0.7.2
-tensorflow==2.16.1
-tensorflow-intel==2.16.1
-tensorflow-io-gcs-filesystem==0.31.0
+tensorflow
 termcolor==2.4.0
 threadpoolctl==3.3.0
 tinycss2==1.4.0
